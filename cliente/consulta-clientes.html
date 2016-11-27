@@ -1,0 +1,19 @@
+<div ng-controller="consultaClienteController">
+   <h1>{{headerMessage}}</h1>
+   <div layout="row" layout-padding="" layout-wrap=""  style="padding-bottom: 32px;" class="comandas" ng-cloak>
+
+      <md-whiteframe ng-repeat="cli in clientes track by cli.id"
+         ng-class="{'app-green': cli.quantidadeBonusCorrente >= 10}"
+         layout="column" class="md-whiteframe-4dp" flex-xs="100" flex-sm="45" flex-gt-sm="30"
+         flex-gt-md="20" layout-align="center center"
+         ui-sref="consulta-consumacao-cliente({cliente: cli})"
+         layout>
+         <div class="md-12 md-headline" >
+            <a ng-class="{'app-green':clienteHasBonus(cli)}">
+               {{cli.nome}}
+            </a>
+         </div>
+
+      </md-whiteframe>
+
+</div>

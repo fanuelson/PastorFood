@@ -1,0 +1,59 @@
+<div ng-controller="cadastroClienteController" class="ui basic segment">
+	<h1>{{headerMessage}}</h1>
+	<div class="ui grid">
+		<div class="sixteen wide mobile twelve wide tablet nine wide computer column">
+			<div ng-class="{'loading': formFornecedorLoading }" class="ui raised segment">
+
+				<div ng-if="retornoSucesso.mensagem"
+					class="ui success message">
+				  <p>{{retornoSucesso.mensagem}}</p>
+				</div>
+
+				<div ng-if="error.validacoesRegraNegocio" class="ui error message">
+				  <ul class="list">
+				    <li ng-repeat="validacao in error.validacoesRegraNegocio" >{{validacao}}</li>
+				  </ul>
+				</div>
+
+				<div class="ui hidden divider"></div>
+
+				<form id="formCadastro" name="formCadastro" class="ui form">
+
+					<div class="field" >
+						<div ng-class="{'error': error.camposObrigatorios.nome}"
+							class="field eight wide columns">
+
+							<label>Nome *</label>
+
+							<div ng-if="error.camposObrigatorios.nome"
+								ng-class="{'error': error.camposObrigatorios.nome}"
+								class="ui pointing below red basic label">
+									{{error.camposObrigatorios.nome}}
+							</div>
+
+							<div>
+								<input type="text" name="nome" placeholder="Nome" ng-model="fornecedor.nome" />
+							</div>
+						</div>
+
+					</div>
+
+					<div class="text-align-right">
+
+						<div class="ui right aligned grid">
+							<div class="right floated sixteen wide column">
+								<button ng-click="limparCampos()" class="ui button">Limpar</button>
+								<btn-salvar
+									is-btn-disabled='fornecedor.isInvalid()'
+									save-action="save()">
+								</btn-salvar>
+							</div>
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>

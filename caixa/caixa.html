@@ -1,0 +1,100 @@
+<div ng-controller="caixaController" layout-padding>
+   <h1>{{headerMessage}}</h1>
+   <div class="ui grid">
+      <div ng-show="!hasCaixaAberto()"
+         class="sixteen wide mobile twelve wide tablet nine wide computer column">
+         <div ng-if="mensagemSucesso"
+            class="ui success message">
+           <p>{{mensagemSucesso}}</p>
+         </div>
+
+         <div ng-if="error.validacoes" class="ui error message">
+           <ul class="list">
+             <li ng-repeat="validacao in error.validacoes" >{{validacao}}</li>
+           </ul>
+         </div>
+
+         <div class="ui hidden divider"></div>
+         <div ng-class="{'loading': formFornecedorLoading }" class="ui raised segment">
+
+            <md-input-container>
+               <label>Valor Inicial</label>
+               <input type="text" ng-model="valorInicial" ui-number-mask="2">
+            </md-input-container>
+
+            <div class="text-align-right">
+
+               <div class="ui right aligned grid">
+                  <div class="right floated sixteen wide column">
+                     <button ng-click="limparCampos()" class="ui button">Limpar</button>
+                     <btn-salvar
+                        is-btn-disabled='!isValorValido()'
+                        save-action="abrirCaixa()">
+                     </btn-salvar>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+
+      <div ng-show="hasCaixaAberto()"
+         class="sixteen wide mobile twelve wide tablet nine wide computer column">
+         <div ng-if="mensagemSucesso"
+            class="ui success message">
+           <p>{{mensagemSucesso}}</p>
+         </div>
+
+         <div ng-if="error.validacoes" class="ui error message">
+           <ul class="list">
+             <li ng-repeat="validacao in error.validacoes" >{{validacao}}</li>
+           </ul>
+         </div>
+
+         <div class="ui hidden divider"></div>
+         <div ng-class="{'loading': formFornecedorLoading }" class="ui raised segment">
+            <h3>Caixa Aberto</h3>
+
+
+            <md-input-container class="m-a-5">
+               <label>ID</label>
+               <input type="text" ng-model="caixaAberto.id" ng-disabled="true">
+            </md-input-container>
+            <br>
+
+            <md-input-container class="m-a-5">
+               <label>Data Abertura</label>
+               <input type="text" ng-model="caixaAberto.dataAbertura" ng-disabled="true">
+            </md-input-container>
+
+            <md-input-container class="m-a-5">
+               <label>Valor Inicial</label>
+               <input type="text" ng-model="caixaAberto.valorInicial" ui-number-mask="2" ng-disabled="true">
+            </md-input-container>
+            <br>
+
+            <md-input-container class="m-a-5 app-green">
+               <label>Valor Atual</label>
+               <input type="text" ng-model="caixaAberto.valorAtual" ui-number-mask="2" ng-disabled="true">
+            </md-input-container>
+            <br>
+
+            <md-input-container class="m-a-5">
+               <label>Valor Final</label>
+               <input type="text" ng-model="caixaAberto.valorFinal" placeholder="" ui-number-mask="2" ng-disabled="true">
+            </md-input-container>
+
+            <div class="text-align-right">
+
+               <div class="ui right aligned grid">
+                  <div class="right floated sixteen wide column">
+                     <button ng-click="fecharCaixa()" class="ui button red">Fechar Caixa</button>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+</div>

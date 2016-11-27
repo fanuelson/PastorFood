@@ -1,0 +1,124 @@
+<div ng-controller="consultaProdutosController" layout="column" layout-padding>
+	<h1>{{headerMessage}}</h1>
+	<div class="ui grid" >
+
+		<div class="sixteen wide mobile sixteen wide computer sixteen wide tablet column" >
+			 <div ng-class="{ 'loading' : tabelaProdutoLoading }"
+			 	class="ui raised segment">
+
+					<div flex>
+						<h3>Filtro</h3>
+						<div class="ui divider" ></div>
+						<div flex-100>
+							<md-input-container class="m-a-5">
+								<label>Id</label>
+								<input type="text" ng-model="filtro.idProduto" ui-number-mask="0" max="100">
+							</md-input-container>
+						</div>
+						<div flex layout="row" layout-xs="column">
+								<md-input-container class="m-a-5" flex-gt-xs="30">
+									<label>Nome</label>
+									<input type="text" ng-model="filtro.nome">
+								</md-input-container>
+
+								<md-input-container class="m-a-5">
+									<label>Status</label>
+									<md-select ng-model="filtro.status">
+										<md-option ng-repeat="stat in status" ng-value="stat.id" >
+											{{stat.descricao}}
+										</md-option>
+									</md-select>
+								</md-input-container>
+						</div>
+						<div flex layout="row" layout-align="end end">
+							<button ng-click="limparFiltroPesquisa()" class="ui button">Limpar</button>
+							<btn-pesquisar pesquisa-action="pesquisar()"></btn-pesquisar>
+						</div>
+					</div>
+
+					<div class="ui divider"></div>
+
+					<div class="text-align-right">
+						<a ui-sref="cadastro-produto"
+							data-tooltip="Adicionar Produto"
+							data-position="top center"
+							data-inverted="">
+							<md-icon ng-style="{color: 'green'}">add_box</md-icon>
+						</a>
+					</div>
+
+					<table class="ui selectable celled striped table" >
+						<thead>
+							<tr>
+								<th class="two wide">ID</th>
+								<th class="eight wide">Nome</th>
+								<th class="two wide">Status</th>
+								<th class="two wide text-align-center">Ativo?</th>
+								<th class="two wide text-align-center">Editar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-if="produtosPage.totalElements === 0"
+								class="ui negative" >
+								<td colspan="5" >
+									Nenhum registro encontrado
+								</td>
+							</tr>
+							<tr ng-if="produtosPage.totalElements > 0"
+								ng-repeat="produto in produtosPage.content">
+								<td>{{produto.idProduto}}</td>
+								<td>{{produto.nome}}</td>
+								<td>
+									<span ng-if="produto.status.descricao === 'Inativo'"
+										class="ui tiny red label pad-3">{{produto.status.descricao}}</span>
+									<span ng-if="produto.status.descricao === 'Ativo'"
+										class="ui tiny green label pad-3">{{produto.status.descricao}}</span>
+								</td>
+								<td class="text-align-center" >
+									<md-checkbox aria-label="Checkbox No Ink"
+										ng-click="toggleStatus($index)"
+										ng-checked="produto.status.descricao == 'Ativo'"
+										class="md-primary m-a-10">
+									</md-checkbox>
+								</td>
+								<td class="text-align-center">
+										<a ui-sref="cadastro-produto({idProd: {{produto.idProduto}}})"
+											data-tooltip="Editar"
+											data-position="right center"
+											data-inverted="">
+											<md-icon class="md-orange">border_color</md-icon>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr ng-if="produtosPage.totalPages > 1" >
+								<th colspan="3">
+									<div class="ui pagination menu">
+								        <a ng-click="findAllProductsPage(produtosPage.number-1)" class="icon item">
+								          <i class="left chevron icon"></i>
+								        </a>
+								        <a ng-repeat="pagina in getPages(produtosPage.totalPages) track by $index"
+								        	ng-click="findAllProductsPage($index)"
+								        	ng-class=" $index == produtosPage.number ? 'active' : ''"
+								        	class="item">{{$index + 1}}</a>
+								        <a ng-click="findAllProductsPage(produtosPage.number+1)" class="icon item">
+								          <i class="right chevron icon"></i>
+								        </a>
+							      </div>
+								</th>
+							</tr>
+						</tfoot>
+					</table>
+  				</div>
+		</div>
+	</div>
+
+	<modal-confirmacao
+		id="modalConfirmacao"
+		on-click-yes="del()"
+		mensagem="'Tem certeza que deseja excluir o registro?'" >
+	</modal-confirmacao>
+
+</div>

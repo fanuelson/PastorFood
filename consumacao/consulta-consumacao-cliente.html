@@ -1,0 +1,46 @@
+<div ng-controller="consultaConsumacaoClienteController" class="ui basic segment">
+	<h1>{{headerMessage}}</h1>
+	<div class="ui grid">
+		<div class="sixteen wide mobile twelve wide tablet nine wide computer column">
+			<div class="ui raised segment">
+				<h2>{{cliente.nome}}</h2>
+				<div class="ui divider" ></div>
+				<div>
+					<h3>Histórico de Consumações</h3>
+					<div ng-repeat="cons in consumacoes.content track by cons.id">
+						{{cons.dataConsumacao}}
+						<div class="" style="margin-left: 30px">
+							{{cons.produto.nome}} - {{cons.quantidadeConsumida}}
+						</div>
+					</div>
+
+				</div>
+				<section layout="row" layout-padding="" ng-show="consumacoes.totalPages > 0">
+					<cl-paging  class="font-12" flex cl-pages="consumacoes.totalPages" cl-steps="10" cl-page-changed="findAllConsumacoesByCliente()" cl-align="start start"
+						cl-current-page="consumacoesPage"></cl-paging>
+				</section>
+				<div class="ui divider" ></div>
+				<div>
+					<h3>Bônus Correntes</h3>
+					<div ng-class="{'app-green': bon.quantidadeBonusCorrente >= 10}"
+						ng-repeat="bon in bonusCliente.content track by bon.id" layout="row" layout-align="start center">
+						{{bon.produto.nome}} -
+						{{bon.quantidadeBonusCorrente}} -
+						<md-button class="md-raised md-primary font-12" style="background: green; font-weight: bold;"
+							ng-click="darBonus(bon.produto.idProduto)"
+							aria-label="Dar Bônus"
+							ng-if="bon.quantidadeBonusCorrente >= 10" >
+							Dar Bônus
+						</md-button>
+					</div>
+					<section layout="row" layout-padding="" ng-show="bonusCliente.totalPages > 0">
+						<cl-paging  class="font-12" flex cl-pages="bonusCliente.totalPages" cl-steps="10" cl-page-changed="findAllBonusByCliente()"
+							cl-align="start start"
+							cl-current-page="bonusClientePage"></cl-paging>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

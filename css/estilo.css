@@ -1,0 +1,182 @@
+
+/*PAGING*/
+
+cl-paging div button {
+	width: 30px !important;
+	height: 30px !important;
+	padding: 1px !important;
+}
+
+/* APP CSS */
+.app-green { color: #2ECC40 !important; }
+.app-red { color: #FF695E !important; }
+.app-icon-red { color: #DB2828 !important; }
+
+/* GERENCIADOR PDV*/
+
+.comandas md-whiteframe {
+	margin: 15px;
+	height: 100px;
+	transition: box-shadow .5s;
+}
+
+.comandas md-whiteframe:hover {
+	cursor: pointer;
+	color: #1E88E5;
+	border: 2px solid #2196F3;
+	box-shadow: 0 8px 8px rgba(0,0,0,0.24),0 0 8px rgba(0,0,0,0.12);
+}
+
+/* LOGIN PAGE */
+
+	.form-holder {
+		background: rgba(23, 21, 21, 0.07);
+		margin-top: 10%;
+		border-radius: 3px;
+	}
+
+	.form-head {
+		font-size: 30px;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: #fff;
+		text-shadow: 0 0 30px #000;
+		margin: 15px auto 30px auto;
+	}
+
+/* END LOGIN PAGE */
+
+/* MENU */
+.menuSelected {
+	background-color: yellow !important;
+   border-color: #FBBD08 !important;
+	color: black !important;
+}
+
+.menu-block > .header {
+	padding: 2px 2px 2px 10px !important;
+}
+
+.menu-block .header {
+	transition: all .5s !important;
+	color: black !important;
+	font-weight: bold;
+}
+.menu-block .header:hover {
+	background: rgba(236, 239, 241, 0.56) !important;
+	color: #00aaff !important;
+	-webkit-transition: none !important;
+	transition: none !important;
+	cursor: pointer;
+}
+
+.menu-block > div > .menu-item{
+	transition: all .5s !important;
+	color: #78909C !important;
+	padding: 2px 2px 2px 10px;
+}
+
+.menu-block > div > .menu-item:hover {
+	background: rgba(236, 239, 241, 0.56) !important;
+	color: #00aaff !important;
+	-webkit-transition: none !important;
+	transition: none !important;
+	cursor: pointer;
+	padding: 2px 2px 2px 15px;
+}
+
+/* END MENU */
+
+/* Paddings */
+.pad-2 {
+	padding: 2px !important;
+}
+.pad-3 {
+	padding: 3px !important;
+}
+.pad-5 {
+	padding: 5px !important;
+}
+
+/* Margins */
+
+.m-a-5
+{
+	margin: 5px 0 !important;
+}
+.m-a-10
+{
+	margin: 10px 0 !important;
+}
+.m-a-20
+{
+	margin: 20px 0 !important;
+}
+.m-a-25
+{
+	margin: 25px 0 !important;
+}
+.m-a-30
+{
+	margin: 30px 0 !important;
+}
+.m-a-40
+{
+	margin: 40px 0 !important;
+}
+
+/* End Margins */
+
+.font-12 {
+	font-size: 12px !important;
+}
+
+.font-14 {
+	font-size: 14px !important;
+}
+
+.float-right {
+	float: right;
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-center {
+	text-align: center !important;
+}
+
+.input-search {
+	background: rgb(255, 255, 128) !important;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+/* material icons SIZE */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* material icons COLOR */
+.material-icons.md-red { color: #FF695E !important; }
+.material-icons.md-blue { color: #54C8FF !important; }
+.material-icons.md-yellow { color: #ffdf05 !important; }
+.material-icons.md-orange { color: orange !important; }
+.material-icons.md-green { color: #2ECC40 !important; }
+.material-icons.md-black { color: black !important; }
+.material-icons.md-white { color: white !important; }
+
+.material-icons.md-bg-black { background: black !important; }
+
+/*angular material date picker*/
+md-datepicker.md-only-icon .md-datepicker-input-container {
+	display: none;
+}

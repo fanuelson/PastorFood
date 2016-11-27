@@ -1,0 +1,30 @@
+{
+  "name": "pastor-food",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "fanuel nunes <fanuelson@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-i18n": "^1.5.9",
+    "angular-ui-router": "^0.3.2",
+    "material-angular-paging": "*",
+    "angular-material": "^1.1.1",
+    "angular-messages": "^1.5.9",
+    "angular-animate": "^1.5.9",
+    "angular-aria": "^1.5.9"
+  },
+  "resolutions": {
+    "angular": "1.5.9"
+  }
+}

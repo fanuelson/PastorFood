@@ -1,0 +1,110 @@
+<div ng-controller="consultaCaixaController" class="ui basic segment">
+	<h1>{{headerMessage}}</h1>
+	<div class="ui grid" >
+		<div class="sixteen wide mobile sixteen wide computer sixteen wide tablet column" >
+			 <div ng-class="{ 'loading' : tabelacaixasLoading }"
+			 	class="ui raised segment">
+
+  					<h3>Filtro</h3>
+  					<div class="ui divider" ></div>
+					<div layout="row">
+						<md-input-container class="m-a-5">
+							<label>ID</label>
+							<input type="text" ng-model="filtroPesquisa.idCaixa" ui-number-mask="0"/>
+						</md-input-container>
+					</div>
+					<div layout="column">
+						<h5 style="margin: 0px">Periodo de pesquisa data de abertura:</h5>
+						<br>
+						<div layout="row">
+
+							<md-input-container class="m-a-5">
+								<label>Data Inicial</label>
+								<input type="text" ng-model="filtroPesquisa.dataInicial" ui-date-mask/>
+							</md-input-container>
+							<md-datepicker type="text" class="md-only-icon" ng-model="filtroPesquisa.dataInicial" md-placeholder="Enter date" ></md-datepicker>
+							<md-input-container class="m-a-5">
+								<label>Data Final</label>
+								<input type="text" ng-model="filtroPesquisa.dataFinal" ui-date-mask/>
+							</md-input-container>
+							<md-datepicker type="text" class="md-only-icon" md-min-date="filtroPesquisa.dataInicial" ng-model="filtroPesquisa.dataFinal" md-placeholder="Enter date" ></md-datepicker>
+						</div>
+					</div>
+
+					<div layout="row" layout-align="end end" class="text-align-right">
+						<button ng-click="limparFiltroPesquisa()" class="ui button">Limpar</button>
+						<btn-pesquisar pesquisa-action="pesquisar()"></btn-pesquisar>
+					</div>
+
+  					<div class="ui hidden divider"></div>
+  					<div class="ui divider"></div>
+					<table class="ui selectable celled table">
+						<thead>
+							<tr>
+								<th class="one wide">ID</th>
+								<th class="one wide">Data de Abertura</th>
+								<th class="one wide">Data de Fechamento</th>
+								<th class="one wide">Valor Inicial</th>
+								<th class="one wide">Valor Atual</th>
+								<th class="one wide">Valor Final</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-if="caixasPage.totalElements === 0"
+								class="ui negative" >
+								<td colspan="6" >
+									Nenhum registro encontrado
+								</td>
+							</tr>
+							<tr ng-if="caixasPage.totalElements > 0"
+								ng-repeat="caixa in caixasPage.content track by caixa.id">
+								<td>{{caixa.id}}</td>
+								<td>{{caixa.dataAbertura}}</td>
+								<td>{{caixa.dataFechamento}}</td>
+								<td>{{caixa.valorInicial | finance:false:2}}</td>
+								<td>{{caixa.valorAtual | finance:false:2}}</td>
+								<td>{{caixa.valorFinal | finance:false:2}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr ng-if="caixasPage.totalPages > 1" >
+								<th colspan="6">
+									<div class="ui pagination menu font-12">
+
+										  <a ng-click="findAllcaixasPage(caixasPage.number-1)" class="icon item">
+								          <i class="left chevron icon"></i>
+								        </a>
+
+								        <a ng-repeat="pagina in getPages(caixasPage.totalPages) track by $index"
+								        	ng-click="findAllcaixasPage($index)"
+								        	ng-class="$index == produtosPage.number ? 'active' : ''"
+								        	class="item">
+													{{$index + 1}}
+											</a>
+
+										<a ng-click="findAllcaixasPage(caixasPage.number+1)" class="icon item">
+											<i class="right chevron icon"></i>
+										</a>
+
+							      </div>
+								</th>
+							</tr>
+						</tfoot>
+					</table>
+					<div flex>
+						<div layout-align="end center" layout="row" >
+
+						</div>
+					</div>
+  				</div>
+		</div>
+
+	</div>
+
+	<modal-confirmacao
+		id="modalConfirmacao"
+		mensagem="'Tem certeza que deseja excluir o registro?'"
+		on-click-yes="del()">
+	</modal-confirmacao>
+
+</div>

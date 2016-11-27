@@ -1,0 +1,155 @@
+<html lang="pt" ng-app="myApp" >
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>PastorFoodApp</title>
+   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+   <!-- Angular Material style sheet -->
+   <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="node_modules/material-icons/css/material-icons.min.css">
+
+   <!-- SEMANTIC UI - CSS -->
+   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+
+   <!-- CUSTOM GLOBAL - CSS -->
+   <link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
+</head>
+
+<body ng-controller="mainController" layout="row" ng-cloak>
+
+   <!-- MENU -->
+   <div ng-if="userLogged.isLoggedIn" ng-include="'menu.html'" include-replace></div>
+
+   <div layout="column" role="main" flex>
+
+      <!-- HEADER BAR -->
+      <div ng-if="userLogged.isLoggedIn" class="ui top attached inverted menu">
+         <md-button  ng-click="toggleMenu()" >
+            <md-icon class="md-white">menu</md-icon>
+         </md-button>
+         <div class="right menu">
+            <a ng-click="logout()" class="active red item"> Logout </a>
+         </div>
+      </div>
+
+      <!-- CONTENT -->
+      <md-content ui-view="starterContent" md-scroll-y layout="column" flex style="background: white">
+          <div layout="row">
+             Carregando...
+             <span>
+                <md-progress-circular md-diameter="16"></md-progress-circular>
+             </span>
+          </div>
+      </md-content>
+
+   </div>
+
+
+   <!-- JQUERY -->
+      <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+   <!-- STRING -->
+      <script src="node_modules/string/dist/string.min.js"></script>
+
+   <!-- semantic ui -->
+      <script src="semantic/dist/semantic.min.js"></script>
+
+   <!-- Angular -->
+      <script src="bower_components/angular/angular.min.js"></script>
+
+   <!-- Angular internationalization -->
+      <script src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
+
+   <!-- Angular UI ROUTER-->
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+   <!-- Angular Material requires Angular.js Libraries -->
+      <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+      <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+      <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+
+      <script src="node_modules/moment/moment.js"></script>
+
+   <!-- Angular Material Library -->
+      <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+   <!-- angular-br-filters -->
+      <script src="node_modules/angular-br-filters/release/angular-br-filters.min.js"></script>
+
+   <!-- angular-input-masks -->
+      <script src="node_modules/angular-input-masks/releases/angular-input-masks-standalone.min.js"></script>
+
+   <!-- angular-file-saver-bundle -->
+      <script src="node_modules/angular-file-saver/dist/angular-file-saver.bundle.min.js"></script>
+
+   <!-- angular paging -->
+      <script src="bower_components/material-angular-paging/build/dist.min.js"></script>
+
+   <!-- APP MODULE  -->
+      <script src="app.module.js"></script>
+
+   <!-- APP STATE CONFIG  -->
+      <script src="app.state.js"></script>
+
+   <!-- APP CONSTANTS CONFIG  -->
+      <script src="app.constants.js"></script>
+
+   <!-- APP MATERIAL CONFIG  -->
+      <script src="app.material.js"></script>
+
+   <!-- APP CONFIG -->
+      <script src="app.config.js"></script>
+
+   <!-- Custom FILTERs -->
+   	<script src="filters/BrDecimalNumberFilter.js"></script>
+
+	<!-- Custom Directives -->
+   	<script src="directives/btnSalvar/btnSalvarDirective.js"></script>
+   	<script src="directives/btnPesquisar/btnPesquisarDirective.js"></script>
+   	<script src="directives/menuToggle/menuToggleDirective.js"></script>
+   	<script src="directives/menuToggle/menuToggleDownDirective.js"></script>
+   	<script src="directives/resetSelectItems/ResetSelectItemsDirective.js"></script>
+   	<script src="directives/semanticUiSelectItemsDirective/semanticUiSelectItemsDirective.js"></script>
+   	<script src="directives/modalConfirmacaoDirective/modalConfirmacao.js"></script>
+   	<script src="directives/modalConfirmacaoDirective/modalConfirmacaoOpener.js"></script>
+   	<script src="toasts/ErrorToastController.js"></script>
+   	<script src="toasts/SuccessToastController.js"></script>
+
+   <!-- SERVICES -->
+      <script src="auth/AuthService.js" ></script>
+      <script src="auth/TokenService.js" ></script>
+      <script src="usuario/UsuarioService.js"></script>
+   	<script src="produto/ProdutoService.js"></script>
+   	<script src="insumo/InsumoService.js"></script>
+   	<script src="medida/MedidaService.js"></script>
+   	<script src="cliente/ClienteService.js"></script>
+   	<script src="caixa/CaixaService.js"></script>
+   	<script src="consumacao/ConsumacaoService.js"></script>
+   	<script src="bonus/BonusService.js"></script>
+
+   <!-- CONTROLLERS -->
+      <script src="login/LoginController.js"></script>
+      <script src="main/MainController.js"></script>
+   	<script src="usuario/UsuarioController.js"></script>
+   	<script src="produto/CadastroProdutoController.js"></script>
+   	<script src="produto/ConsultaProdutoController.js"></script>
+   	<script src="insumo/CadastroInsumoController.js"></script>
+   	<script src="insumo/ConsultaInsumoController.js"></script>
+   	<script src="calculadoraCedula/CalculadoraCedulaController.js"></script>
+      <script src="caixa/CaixaController.js"></script>
+      <script src="caixa/ConsultaCaixaController.js"></script>
+      <script src="cliente/CadastroClienteController.js"></script>
+      <script src="cliente/ConsultaClienteController.js"></script>
+      <script src="consumacao/ConsultaConsumacaoClienteController.js"></script>
+      <script src="consumacao/RegistroConsumacaoController.js"></script>
+
+   <!-- INTERCEPTOR -->
+      <script src="auth/TokenInterceptor.js"></script>
+
+   <!-- CUSTOM GLOBAL JS -->
+      <script src="js/global.js"></script>
+
+</body>
+</html>

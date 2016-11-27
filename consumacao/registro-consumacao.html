@@ -1,0 +1,63 @@
+<div ng-controller="registroConsumacaoController" layout-padding>
+   <h1>{{headerMessage}}</h1>
+	<div class="ui grid">
+
+		<div class="sixteen wide mobile seven wide tablet seven wide computer column">
+			<h4>{{cliente.nome}}</h4>
+			<div class="ui raised segment">
+
+            <div ng-if="mensagemSucesso"
+					class="ui success message">
+				  <p>{{mensagemSucesso}}</p>
+				</div>
+
+				<div ng-if="error.validacoesRegraNegocio" class="ui error message">
+				  <ul class="list">
+				    <li ng-repeat="validacao in error.validacoesRegraNegocio" >{{validacao}}</li>
+				  </ul>
+				</div>
+
+            <md-input-container >
+               <label>Cliente</label>
+               <md-select ng-model="registroConsumacaoRequestModel.idCliente">
+                  <md-option ng-repeat="cli in clientes" ng-value="cli.id" >
+                     {{cli.nome}}
+                  </md-option>
+               </md-select>
+            </md-input-container>
+
+            <md-input-container >
+               <label>Produto</label>
+               <md-select ng-model="registroConsumacaoRequestModel.idProduto">
+                  <md-option ng-repeat="prod in produtos" ng-value="prod.idProduto" >
+                     {{prod.nome}}
+                  </md-option>
+               </md-select>
+            </md-input-container>
+
+            <br>
+            <md-input-container >
+               <label>Quantidade</label>
+               <input type="text" ng-model="registroConsumacaoRequestModel.quantidadeConsumida"
+                  ui-number-mask="0">
+            </md-input-container>
+
+            <div class="text-align-right">
+
+               <div class="ui right aligned grid">
+                  <div class="right floated sixteen wide column">
+                     <button ng-click="registrarConsumacao()"
+                        ng-class="{'disabled': isBtnDisabled()}"
+                        ng-disabled="isBtnDisabled()"
+                        class="ui button green">Registrar</button>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+</div>
