@@ -9,17 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.5.8",
-    "angular-animate": "^1.5.8",
-    "angular-aria": "^1.5.8",
-    "angular-br-filters": "^0.6.0",
-    "angular-file-saver": "^1.1.2",
-    "angular-i18n": "^1.5.8",
-    "angular-input-masks": "^2.5.0",
-    "angular-material": "^1.1.1",
-    "angular-messages": "^1.5.8",
-    "angular-route": "^1.5.8",
-    "angular-ui-router": "^0.3.1",
     "better-console": "^0.2.4",
     "del": "^2.2.2",
     "extend": "^3.0.0",
@@ -46,14 +35,10 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.10",
-    "jquery": "^3.1.1",
     "map-stream": "0.0.6",
-    "material-icons": "^0.1.0",
-    "moment": "^2.15.1",
     "require-dot-file": "^0.4.0",
     "run-sequence": "^1.2.2",
     "semantic-ui": "^2.2.4",
-    "string": "^3.3.3",
     "yamljs": "^0.2.8"
   }
 }
