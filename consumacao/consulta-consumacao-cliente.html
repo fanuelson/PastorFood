@@ -10,7 +10,7 @@
 					<div ng-repeat="cons in consumacoes.content track by cons.id">
 						{{cons.dataConsumacao}}
 						<div class="" style="margin-left: 30px">
-							{{cons.produto.nome}} - {{cons.quantidadeConsumida}}
+							Consumiu {{cons.quantidadeConsumida}} unidade(s) de {{cons.produto.nome}}
 						</div>
 					</div>
 
@@ -24,8 +24,7 @@
 					<h3>Bônus Correntes</h3>
 					<div ng-class="{'app-green': bon.quantidadeBonusCorrente >= 10}"
 						ng-repeat="bon in bonusCliente.content track by bon.id" layout="row" layout-align="start center">
-						{{bon.produto.nome}} -
-						{{bon.quantidadeBonusCorrente}} -
+							Bônus Corrente: {{bon.quantidadeBonusCorrente}} de {{bon.produto.nome}} 
 						<md-button class="md-raised md-primary font-12" style="background: green; font-weight: bold;"
 							ng-click="darBonus(bon.produto.idProduto)"
 							aria-label="Dar Bônus"

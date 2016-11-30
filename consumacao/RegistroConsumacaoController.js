@@ -18,7 +18,7 @@ function registroConsumacaoController($scope, APP_CONFIG, consumacaoService, cli
 		      quantidadeConsumida: 1
 		   };
       }).error(function(res) {
-
+			$scope.error = res;
       });
    }
 

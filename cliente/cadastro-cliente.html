@@ -9,7 +9,7 @@
 				  <p>{{retornoSucesso.mensagem}}</p>
 				</div>
 
-				<div ng-if="error.validacoesRegraNegocio" class="ui error message">
+				<div ng-if="error.validacoesRegraNegocio.length > 0" class="ui error message">
 				  <ul class="list">
 				    <li ng-repeat="validacao in error.validacoesRegraNegocio" >{{validacao}}</li>
 				  </ul>
@@ -32,7 +32,7 @@
 							</div>
 
 							<div>
-								<input type="text" name="nome" placeholder="Nome" ng-model="fornecedor.nome" />
+								<input type="text" name="nome" placeholder="Nome" ng-model="cliente.nome" />
 							</div>
 						</div>
 

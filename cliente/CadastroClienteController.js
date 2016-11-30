@@ -4,12 +4,6 @@ function cadastroClienteController($scope, clienteService) {
 
 	$scope.formFornecedorLoading = false;
 
-	$scope.fornecedor = {
-		isInvalid : function() {
-			return S(this.nome).isEmpty();
-		}
-	};
-
 	$scope.cliente = {
 		isInvalid : function() {
 			return S(this.nome).isEmpty();
@@ -24,8 +18,7 @@ function cadastroClienteController($scope, clienteService) {
 
 		$promiseSave.success(function(data) {
 			$scope.formFornecedorLoading = false;
-			$scope.error = null;
-			$scope.fornecedor = {};
+			$scope.limparCampos();
 			$scope.retornoSucesso = data;
 		}).error(function(data) {
 			$scope.formFornecedorLoading = false;
