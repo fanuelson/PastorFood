@@ -7,7 +7,9 @@
       'ui.utils.masks',
       'idf.br-filters',
       'ngFileSaver',
-      'cl.paging'
+      'cl.paging',
+      'ngAnimate',
+      'toastr'
    ];
    angular.module('myApp', depends);
 

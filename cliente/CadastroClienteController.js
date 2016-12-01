@@ -1,4 +1,4 @@
-function cadastroClienteController($scope, clienteService) {
+function cadastroClienteController($scope, clienteService, toastr) {
 
 	$scope.headerMessage = "Cadastro de Cliente";
 
@@ -19,10 +19,13 @@ function cadastroClienteController($scope, clienteService) {
 		$promiseSave.success(function(data) {
 			$scope.formFornecedorLoading = false;
 			$scope.limparCampos();
-			$scope.retornoSucesso = data;
+			toastr.success(data.mensagem);
 		}).error(function(data) {
 			$scope.formFornecedorLoading = false;
 			$scope.error = data;
+			angular.forEach(data.validacoesRegraNegocio, function(value, key) {
+				toastr.error(value);
+			})
 		});
 	}
 
@@ -42,6 +45,7 @@ function cadastroClienteController($scope, clienteService) {
 var depends = [
     '$scope',
     'clienteService',
+	 'toastr',
     cadastroClienteController ]
 
 angular.module('myApp').controller('cadastroClienteController', depends);

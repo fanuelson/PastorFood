@@ -1,6 +1,6 @@
 (function() {
 
-	function cadastroProdutoController($scope, APP_CONFIG, $stateParams, produtoService, insumoService) {
+	function cadastroProdutoController($scope, APP_CONFIG, $stateParams, produtoService, insumoService, toastr) {
 
 		$scope.headerMessage = "Cadastro de Produto";
 
@@ -31,6 +31,7 @@
 				})
 				.error(function(res){
 					console.log(res);
+					toastr.error("Erro ao buscar Produto.");
 				});
 			}
 		}
@@ -53,9 +54,13 @@
 				$scope.produto.composicoes = [];
 				$scope.composicao = {};
 				$scope.error = null;
+				toastr.success(data.mensagem);
 			})
 			.error(function(data){
 				$scope.error = data;
+				angular.forEach(data.validacoesRegraNegocio, function(value, key) {
+					toastr.error(value);
+				})
 				stopFormLoading();
 			});
 		}
@@ -85,6 +90,7 @@
 			})
 			.error(function(data){
 				$scope.error = data;
+				toastr.error("Erro ao buscar Insumos.");
 			});
 		}
 
@@ -157,6 +163,7 @@
 		'$stateParams',
 		'produtoService',
 		'insumoService',
+		'toastr',
 		cadastroProdutoController
 	]
 

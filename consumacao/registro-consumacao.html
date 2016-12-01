@@ -6,17 +6,6 @@
 			<h4>{{cliente.nome}}</h4>
 			<div class="ui raised segment">
 
-            <div ng-if="mensagemSucesso"
-					class="ui success message">
-				  <p>{{mensagemSucesso}}</p>
-				</div>
-
-				<div ng-if="error.validacoesRegraNegocio" class="ui error message">
-				  <ul class="list">
-				    <li ng-repeat="validacao in error.validacoesRegraNegocio" >{{validacao}}</li>
-				  </ul>
-				</div>
-
             <md-input-container >
                <label>Cliente</label>
                <md-select ng-model="registroConsumacaoRequestModel.idCliente">

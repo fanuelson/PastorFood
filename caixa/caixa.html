@@ -3,16 +3,6 @@
    <div class="ui grid">
       <div ng-show="!hasCaixaAberto()"
          class="sixteen wide mobile twelve wide tablet nine wide computer column">
-         <div ng-if="mensagemSucesso"
-            class="ui success message">
-           <p>{{mensagemSucesso}}</p>
-         </div>
-
-         <div ng-if="error.validacoes" class="ui error message">
-           <ul class="list">
-             <li ng-repeat="validacao in error.validacoes" >{{validacao}}</li>
-           </ul>
-         </div>
 
          <div class="ui hidden divider"></div>
          <div ng-class="{'loading': formFornecedorLoading }" class="ui raised segment">
@@ -40,16 +30,6 @@
 
       <div ng-show="hasCaixaAberto()"
          class="sixteen wide mobile twelve wide tablet nine wide computer column">
-         <div ng-if="mensagemSucesso"
-            class="ui success message">
-           <p>{{mensagemSucesso}}</p>
-         </div>
-
-         <div ng-if="error.validacoes" class="ui error message">
-           <ul class="list">
-             <li ng-repeat="validacao in error.validacoes" >{{validacao}}</li>
-           </ul>
-         </div>
 
          <div class="ui hidden divider"></div>
          <div ng-class="{'loading': formFornecedorLoading }" class="ui raised segment">

@@ -1,6 +1,6 @@
 (function() {
 
-	function consultaInsumoController($scope, $mdToast, APP_CONFIG, insumoService, medidaService, FileSaver, Blob) {
+	function consultaInsumoController($scope, $mdToast, APP_CONFIG, insumoService, medidaService, FileSaver, Blob, toastr) {
 
 		$scope.headerMessage = "Consulta Insumos";
 
@@ -91,14 +91,12 @@
 			$promiseDelete
 			.success(function(data) {
 				$scope.findAllInsumosPageFilterBy($scope.page);
-				showSuccessToast(data.mensagem);
+				toastr.success(data.mensagem);
 			})
 			.error(function(data){
-				var mensagem = "";
 				angular.forEach(data.validacoesRegraNegocio, function(value){
-					mensagem += value + "\n";
+					toastr.error(value);
 				});
-				showErrorToast(mensagem);
 				stopTabelaLoading();
 			});
 		}
@@ -167,6 +165,7 @@
 		'medidaService',
 		'FileSaver',
 		'Blob',
+		'toastr',
 		consultaInsumoController ]
 
 		angular.module('myApp').controller('consultaInsumoController', depends);

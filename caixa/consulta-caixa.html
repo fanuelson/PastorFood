@@ -22,7 +22,7 @@
 								<label>Data Inicial</label>
 								<input type="text" ng-model="filtroPesquisa.dataInicial" ui-date-mask/>
 							</md-input-container>
-							<md-datepicker type="text" class="md-only-icon" ng-model="filtroPesquisa.dataInicial" md-placeholder="Enter date" ></md-datepicker>
+							<md-datepicker type="text" class="md-only-icon" md-max-date="filtroPesquisa.dataFinal" ng-model="filtroPesquisa.dataInicial" md-placeholder="Enter date" ></md-datepicker>
 							<md-input-container class="m-a-5">
 								<label>Data Final</label>
 								<input type="text" ng-model="filtroPesquisa.dataFinal" ui-date-mask/>
@@ -71,18 +71,18 @@
 								<th colspan="6">
 									<div class="ui pagination menu font-12">
 
-										  <a ng-click="findAllcaixasPage(caixasPage.number-1)" class="icon item">
+										  <a ng-click="findAllcaixasPageFilterBy(caixasPage.number-1)" class="icon item">
 								          <i class="left chevron icon"></i>
 								        </a>
 
 								        <a ng-repeat="pagina in getPages(caixasPage.totalPages) track by $index"
-								        	ng-click="findAllcaixasPage($index)"
-								        	ng-class="$index == produtosPage.number ? 'active' : ''"
+								        	ng-click="findAllcaixasPageFilterBy($index)"
+								        	ng-class="$index == caixasPage.number ? 'active' : ''"
 								        	class="item">
 													{{$index + 1}}
 											</a>
 
-										<a ng-click="findAllcaixasPage(caixasPage.number+1)" class="icon item">
+										<a ng-click="findAllcaixasPageFilterBy(caixasPage.number+1)" class="icon item">
 											<i class="right chevron icon"></i>
 										</a>
 

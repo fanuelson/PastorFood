@@ -1,6 +1,6 @@
 (function() {
 
-	function cadastroInsumoController($scope, APP_CONFIG, $stateParams, insumoService, medidaService) {
+	function cadastroInsumoController($scope, APP_CONFIG, $stateParams, insumoService, medidaService, toastr) {
 
 		$scope.headerMessage = "Cadastro de Insumo";
 
@@ -19,7 +19,7 @@
 				$scope.formInsumoLoading = false;
 			}).error(function(data) {
 				$scope.formInsumoLoading = false;
-
+				toastr.error("Erro ao buscar Medidas.");
 			});
 		}
 
@@ -57,10 +57,13 @@
 				$scope.formInsumoLoading = false;
 				$scope.error = null;
 				$scope.insumo = {};
-				$scope.retornoSucesso = data;
+				toastr.success(data.mensagem);
 			}).error(function(data) {
 				$scope.formInsumoLoading = false;
 				$scope.error = data;
+				angular.forEach(data.validacoesRegraNegocio, function(value, key) {
+					toastr.error(value);
+				})
 			});
 		}
 
@@ -86,6 +89,7 @@
 		'$stateParams',
 		'insumoService',
 		'medidaService',
+		'toastr',
 		cadastroInsumoController ]
 
 		angular.module('myApp').controller('cadastroInsumoController', depends);

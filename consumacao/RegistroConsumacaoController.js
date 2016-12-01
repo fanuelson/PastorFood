@@ -1,4 +1,4 @@
-function registroConsumacaoController($scope, APP_CONFIG, consumacaoService, clienteService, produtoService) {
+function registroConsumacaoController($scope, APP_CONFIG, consumacaoService, clienteService, produtoService, toastr) {
 
 	$scope.headerMessage = "Registro de Consumação";
 
@@ -17,8 +17,12 @@ function registroConsumacaoController($scope, APP_CONFIG, consumacaoService, cli
 			$scope.registroConsumacaoRequestModel = {
 		      quantidadeConsumida: 1
 		   };
+			toastr.success(res.mensagem);
       }).error(function(res) {
 			$scope.error = res;
+			angular.forEach(res.validacoesRegraNegocio, function(value, key) {
+			  toastr.error(value);
+			})
       });
    }
 
@@ -58,6 +62,7 @@ var depends = [
     'consumacaoService',
     'clienteService',
     'produtoService',
+	 'toastr',
     registroConsumacaoController ]
 
 angular.module('myApp').controller('registroConsumacaoController', depends);

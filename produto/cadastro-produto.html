@@ -5,16 +5,6 @@
 			 <div ng-class="{ 'loading' : formProdutoLoading }"
 			 	class="ui raised segment">
 
-					<div ng-if="retornoSucesso.mensagem"
-						class="ui success message">
-					  <p>{{retornoSucesso.mensagem}}</p>
-					</div>
-
-	  				<div ng-if="error.validacoesRegraNegocio.length > 0" class="ui error message">
-					  <ul class="list">
-					    <li ng-repeat="validacao in error.validacoesRegraNegocio" >{{validacao}}</li>
-					  </ul>
-					</div>
 				<div class="ui hidden divider"></div>
 				<form id="formCadastroProduto"
 					name="formCadastroProduto"

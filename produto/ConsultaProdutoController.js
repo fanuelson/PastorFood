@@ -1,4 +1,4 @@
-function consultaProdutosController($scope, $mdToast, APP_CONFIG ,produtoService) {
+function consultaProdutosController($scope, $mdToast, APP_CONFIG ,produtoService, toastr) {
 
 	$scope.cycle = '' ;
 	$scope.headerMessage = "Produtos";
@@ -68,8 +68,10 @@ function consultaProdutosController($scope, $mdToast, APP_CONFIG ,produtoService
 			$promisePage.success(function(data) {
 				$scope.produtosPage.content[indexProd] = data.obj;
 				stopTabelaLoading();
+				toastr.success(data.mensagem);
 			}).error(function(data){
 				stopTabelaLoading();
+				toastr.error("Erro ao alterar Status do produto.");
 			});
 			stopTabelaLoading();
 	}
@@ -80,10 +82,11 @@ function consultaProdutosController($scope, $mdToast, APP_CONFIG ,produtoService
 		$promiseDelete
 			.success(function(data) {
 				$scope.findAllProductsPage($scope.produtosPage.number);
-				$scope.showSimpleToast(data.mensagem);
+				toastr.success(data.mensagem);
 			})
 			.error(function(data){
 				$scope.messageError = data.message;
+				toastr.error("Erro ao remover produto");
 			});
 	}
 
@@ -141,6 +144,7 @@ var depends = [
 	'$mdToast',
    'APP_CONFIG',
    'produtoService',
+	'toastr',
    consultaProdutosController
 ]
 

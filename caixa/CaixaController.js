@@ -1,6 +1,6 @@
 (function() {
 
-   function caixaController($scope, APP_CONFIG, caixaService) {
+   function caixaController($scope, APP_CONFIG, caixaService, toastr) {
       var vm = $scope;
 
       vm.headerMessage = "Abertura de Caixa";
@@ -17,9 +17,13 @@
 
          $promise.success(function(res){
             vm.mensagemSucesso = res.mensagem;
+            toastr.success(res.mensagem);
+            toastr.info("Caixa Aberto");
             findCaixaAberto();
          }).error(function(res){
-            vm.error.validacoes = res.validacoesRegraNegocio;
+            angular.forEach(res.validacoesRegraNegocio, function(value, key) {
+               toastr.error(value);
+            });
          });
       }
 
@@ -29,9 +33,13 @@
 
          $promise.success(function(res){
             vm.mensagemSucesso = res.mensagem;
+            toastr.success(res.mensagem);
+            toastr.info("Caixa fechado.");
             findCaixaAberto();
          }).error(function(res){
-            vm.error.validacoes = res.validacoesRegraNegocio;
+            angular.forEach(res.validacoesRegraNegocio, function(value, key) {
+               toastr.error(value);
+            });
          });
       }
 
@@ -62,6 +70,7 @@
       '$scope',
 		'APP_CONFIG',
       'caixaService',
+      'toastr',
       caixaController
    ]
 

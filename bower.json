@@ -30,7 +30,8 @@
     "string": "^3.3.3",
     "moment": "^2.17.0",
     "material-icons": "^0.1.0",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "angular-toastr": "^2.1.1"
   },
   "resolutions": {
     "angular": "1.5.9"
