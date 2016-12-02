@@ -1,6 +1,8 @@
 (function() {
 
-	function consultaInsumoController($scope, $mdToast, APP_CONFIG, insumoService, medidaService, FileSaver, Blob, toastr) {
+	'use strict'
+
+	function consultaInsumoController($scope, $mdToast, APP_CONFIG, insumoService, medidaService, FileSaver, Blob, toastr, $state) {
 
 		$scope.headerMessage = "Consulta Insumos";
 
@@ -35,7 +37,7 @@
 				return;
 			}
 			startTabelaLoading();
-			$promisePage = insumoService.findAllPage(page, $scope.pageSize);
+			var $promisePage = insumoService.findAllPage(page, $scope.pageSize);
 			$promisePage.success(function(data) {
 				$scope.insumosPage = data;
 				stopTabelaLoading();
@@ -51,7 +53,7 @@
 			}
 			$scope.tabelaInsumosLoading = true;
 			startTabelaLoading();
-			$promisePage = insumoService.findAllPageFilterBy($scope.filtroPesquisa, page, $scope.pageSize);
+			var $promisePage = insumoService.findAllPageFilterBy($scope.filtroPesquisa, page, $scope.pageSize);
 			$promisePage.success(function(data) {
 				$scope.insumosPage = data;
 				stopTabelaLoading();
@@ -62,7 +64,7 @@
 		}
 
 		$scope.findAllMedidas = function() {
-			$promiseFindAllMedida = medidaService.findAll();
+			var $promiseFindAllMedida = medidaService.findAll();
 
 			$promiseFindAllMedida.success(function(data) {
 				$scope.medidas = data;
@@ -79,7 +81,7 @@
 		$scope.limparFiltroPesquisa = function() {
 			$scope.filtroPesquisa = {};
 		}
-		vm = this;
+		var vm = this;
 		$scope.setInsumoExclusao = function(insumo) {
 			vm.insumoExclusao = insumo;
 		}
@@ -87,7 +89,7 @@
 		$scope.del = function() {
 			startTabelaLoading();
 			console.log(vm.insumoExclusao.id);
-			$promiseDelete = insumoService.del(vm.insumoExclusao.id);
+			var $promiseDelete = insumoService.del(vm.insumoExclusao.id);
 			$promiseDelete
 			.success(function(data) {
 				$scope.findAllInsumosPageFilterBy($scope.page);
@@ -99,6 +101,10 @@
 				});
 				stopTabelaLoading();
 			});
+		}
+
+		$scope.edit = function(idIns) {
+			$state.go('cadastro-insumo', {idInsumo:idIns});
 		}
 
 		$scope.showSimpleToast = function(message) {
@@ -120,7 +126,7 @@
 
 		$scope.downloadFile = function() {
 			startPdfLoading();
-			$promiseDownload = insumoService.downloadReport();
+			var $promiseDownload = insumoService.downloadReport();
 			$promiseDownload.success(function(res){
 				var data = new Blob([res], { type: 'application/pdf;charset=utf-8' });
 				FileSaver.saveAs(data, 'relatorio_de_insumos.pdf');
@@ -155,6 +161,10 @@
 			});
 		}
 
+		$scope.openMenu = function($mdOpenMenu, ev) {
+	      $mdOpenMenu(ev);
+	    };
+
 	}
 
 	var depends = [
@@ -166,6 +176,7 @@
 		'FileSaver',
 		'Blob',
 		'toastr',
+		'$state',
 		consultaInsumoController ]
 
 		angular.module('myApp').controller('consultaInsumoController', depends);

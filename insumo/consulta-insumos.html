@@ -101,23 +101,21 @@
 											</md-fab-trigger>
 
 											<md-fab-actions style="position: absolute;right: 50px;">
-												<md-button aria-label="Facebook" class="md-fab md-raised md-mini md-whiteframe-25dp">
-													<a ui-sref="cadastro-insumo({idInsumo: {{insumo.id}}})">
+												<md-button ng-click="edit(insumo.id)" aria-label="Editar" class="md-fab md-raised md-mini md-whiteframe-25dp">
+													<a>
 														<md-icon class="md-orange">border_color</md-icon>
 													</a>
 												</md-button>
-												<md-button class="md-fab md-raised md-mini">
-													<a	href=""
-													ng-click="setInsumoExclusao(insumo)"
+												<md-button class="md-fab md-raised md-mini"
 													modal-confirmacao-opener
 													target-modal-id="'#modalConfirmacao'"
-													class="ui">
+													ng-click="setInsumoExclusao(insumo)">
 													<i class="material-icons md-red" >cancel</i>
-
 												</a>
 												</md-button>
 											</md-fab-actions>
 										</md-fab-speed-dial>
+										
 									</div>
 								</td>
 							</tr>
@@ -165,5 +163,6 @@
 		mensagem="'Tem certeza que deseja excluir o registro?'"
 		on-click-yes="del()">
 	</modal-confirmacao>
+
 
 </div>

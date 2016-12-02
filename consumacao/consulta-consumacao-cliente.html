@@ -7,10 +7,23 @@
 				<div class="ui divider" ></div>
 				<div>
 					<h3>Histórico de Consumações</h3>
-					<div ng-repeat="cons in consumacoes.content track by cons.id">
+					<div class="marg-5"
+						layout="row"
+						layout-align="start center"
+						ng-repeat="cons in consumacoes.content track by cons.id">
 						{{cons.dataConsumacao}}
-						<div class="" style="margin-left: 30px">
+						<div style="margin-left: 30px">
 							Consumiu {{cons.quantidadeConsumida}} unidade(s) de {{cons.produto.nome}}
+							<a href=""
+								data-tooltip="Alterar para Pago"
+								data-position="left center"
+								data-inverted=""
+								ng-click="pagarDivida(cons.id)">
+								<span ng-if="cons.devendo"
+								class="ui tiny red label pad-3">DEVENDO</span>
+							</a>
+							<span ng-if="!cons.devendo"
+							class="ui tiny green label pad-3">PAGO</span>
 						</div>
 					</div>
 
@@ -24,7 +37,7 @@
 					<h3>Bônus Correntes</h3>
 					<div ng-class="{'app-green': bon.quantidadeBonusCorrente >= 10}"
 						ng-repeat="bon in bonusCliente.content track by bon.id" layout="row" layout-align="start center">
-							Bônus Corrente: {{bon.quantidadeBonusCorrente}} de {{bon.produto.nome}} 
+							Bônus Corrente: {{bon.quantidadeBonusCorrente}} de {{bon.produto.nome}}
 						<md-button class="md-raised md-primary font-12" style="background: green; font-weight: bold;"
 							ng-click="darBonus(bon.produto.idProduto)"
 							aria-label="Dar Bônus"

@@ -1,4 +1,6 @@
-function consultaConsumacaoClienteController($scope, APP_CONFIG, $stateParams, clienteService, bonusService) {
+function consultaConsumacaoClienteController($scope, APP_CONFIG, $stateParams, clienteService, bonusService
+	, consumacaoService
+	,toastr) {
 
 	$scope.headerMessage = "Consumações de Cliente";
 
@@ -50,6 +52,19 @@ function consultaConsumacaoClienteController($scope, APP_CONFIG, $stateParams, c
 		})
 	}
 
+	$scope.pagarDivida = function(idCons) {
+		$promise = consumacaoService.pagarDivida(idCons);
+		$promise.success(function(res){
+			toastr.success(res.mensagem);
+			$scope.findAllConsumacoesByCliente();
+			$scope.findAllBonusByCliente();
+		}).error(function(res){
+			angular.forEach(res.validacoesRegraNegocio, function(value, key) {
+				toastr.error(value);
+			})
+		})
+	}
+
 }
 
 var depends = [
@@ -58,6 +73,8 @@ var depends = [
 	 '$stateParams',
     'clienteService',
 	 'bonusService',
+	 'consumacaoService',
+	 'toastr',
     consultaConsumacaoClienteController ]
 
 angular.module('myApp').controller('consultaConsumacaoClienteController', depends);

@@ -8,12 +8,14 @@
 	</div>
 	<div class="actions">
 		<div ng-click="onClickNo()"
+			click-on-enter
 			ng-class="{'disabled' : isBtnNoDisabled }"
-			class="ui cancel red basic inverted  button">
+			class="ui cancel inverted  button">
 			<i class="remove icon"></i> Não
 		</div>
 		<div ng-click="onClickYes()"
 			ng-class="{'disabled' : isBtnYesDisabled }"
+			click-on-enter
 			class="ui ok green inverted button">
 			<i class="checkmark icon"></i> Sim
 		</div>

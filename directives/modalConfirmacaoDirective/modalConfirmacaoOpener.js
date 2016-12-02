@@ -2,7 +2,7 @@
 
 	var modalConfirmacaoOpenerDirective = function() {
 
-		var linkDirective = function (scope, element, attrs) {
+		function linkDirective(scope, element, attrs) {
 
 			$(element).click(function() {
 				var modalToOpen = "" ;

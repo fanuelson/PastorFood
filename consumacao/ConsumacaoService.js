@@ -7,6 +7,11 @@ function consumacaoService($http, APP_CONFIG) {
 		return $http.post(rest_url + '/registrar', registroConsumacaoRequestModel);
 	};
 
+   this.pagarDivida = function(idCons) {
+      return $http.get(rest_url + '/' + idCons + '/pagarDivida');
+   }
+
+
 };
 
 var depends = [
