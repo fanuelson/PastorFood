@@ -49,23 +49,22 @@
 							<label>Medida *</label>
 
 							<div>
-								<select id="medidaSelection"
-									class="ui fluid dropdown"
-									ng-model="insumo.medida"
-									semantic-ui-select-items
-									value-resettable>
-										<option value="" class="default text">Selecione...</option>
-										<option ng-repeat="medida in medidas track by medida.abreviacao"
-											class="item"
-											value="{{medida.abreviacao}}">
-												{{medida.abreviacao}} ({{medida.descricao}})
-										</option>
-						      </select>
+								<md-select ng-model="insumo.medida" aria-label="Medidas"
+									class="m-a-10">
+								    <md-option ng-value="noSelectionOption">
+										 	Selecione...
+									</md-option>
+								    <md-option ng-value="medida.abreviacao"
+									 	ng-repeat="medida in medidas track by medida.abreviacao">
+											{{medida.abreviacao}} ({{medida.descricao}})
+									 </md-option>
+								</md-select>
+
 							</div>
 
 							<div ng-if="error.camposObrigatorios.medida"
 								ng-class="{'error': error.camposObrigatorios.medida}"
-								class="ui pointing under red basic label">
+								class="ui pointing under red basic label m-a-5">
 									{{error.camposObrigatorios.medida}}
 							</div>
 

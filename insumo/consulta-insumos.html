@@ -31,17 +31,16 @@
 							  <label>Medida *</label>
 
 							<div>
-								<select id="medidaSelection"
-									class="ui fluid dropdown"
-									ng-model="filtroPesquisa.medida"
-									value-resettable>
-						          <option value="" >Todas</option>
-					              <option ng-repeat="medida in medidas"
-					              	class="item"
-										value="{{medida.abreviacao}}">
-					              		{{medida.abreviacao}} ({{medida.descricao}})
-					              </option>
-						      </select>
+								<md-select ng-model="filtroPesquisa.medida" aria-label="Medidas"
+									class="m-a-10">
+									 <md-option ng-value="noSelectionOption">
+											Todas
+									</md-option>
+									 <md-option ng-value="medida.abreviacao"
+										ng-repeat="medida in medidas track by medida.abreviacao">
+											{{medida.abreviacao}} ({{medida.descricao}})
+									 </md-option>
+								</md-select>
 							</div>
 							  </div>
 	  					</div>
@@ -115,7 +114,7 @@
 												</md-button>
 											</md-fab-actions>
 										</md-fab-speed-dial>
-										
+
 									</div>
 								</td>
 							</tr>

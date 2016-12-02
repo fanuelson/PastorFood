@@ -69,7 +69,7 @@
 
 
 		$scope.isMedidaSelected = function(abrev) {
-			return insumo.medida.abreviacao == abrev;
+			return $scope.insumo.medida.abreviacao == abrev;
 		}
 
 		$scope.limparCampos = function() {
