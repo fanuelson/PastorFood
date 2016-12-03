@@ -1,6 +1,6 @@
 (function() {
 
-	function consultaClienteController($scope, APP_CONFIG, $stateParams, clienteService) {
+	function consultaClienteController($scope, APP_CONFIG, $stateParams, clienteService, toastr) {
 
 		var v = $scope;
 
@@ -54,8 +54,25 @@
 			return false;
 		}
 
-		$scope.findAllClientes();
+		var idClienteExcluir = {};
+		$scope.setClienteExcluir = function(idCli) {
+			idClienteExcluir = idCli;
+		}
 
+		$scope.del = function() {
+			var $promise = clienteService.del(idClienteExcluir);
+
+			$promise.success(function(res){
+				toastr.success(res.mensagem);
+				$scope.findAllClientes();
+			}).error(function(res){
+				angular.forEach(res.validacoesRegraNegocio, function(value, key) {
+					toastr.error(value);
+				})
+			});
+		}
+
+		$scope.findAllClientes();
 
 	}
 
@@ -64,6 +81,7 @@
 		'APP_CONFIG',
 		'$stateParams',
 		'clienteService',
+		'toastr',
 		consultaClienteController
 	]
 

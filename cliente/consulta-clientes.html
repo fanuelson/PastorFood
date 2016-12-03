@@ -6,14 +6,27 @@
          ng-class="{'app-green': cli.quantidadeBonusCorrente >= 10}"
          layout="column" class="md-whiteframe-4dp" flex-xs="100" flex-sm="45" flex-gt-sm="30"
          flex-gt-md="20" layout-align="center center"
-         ui-sref="consulta-consumacao-cliente({cliente: cli})"
          layout>
-         <div class="md-12 md-headline" >
-            <a ng-class="{'app-green':clienteHasBonus(cli)}">
-               {{cli.nome}}
+         <div flex style="width:100%" layout="row" layout-align="end start">
+            <a href="" modal-confirmacao-opener target-modal-id="'#modalConfirmacao'"
+               ng-click="setClienteExcluir(cli.id)">
+               <i class="material-icons md-red md-12" >cancel</i>
             </a>
          </div>
+         <a layout layout-align="center center" style="width: 100%; background: ivory;"
+            class="md-12 md-headline" ui-sref="consulta-consumacao-cliente({cliente: cli})">
+            <div href="" ng-class="{'app-green font-bold':clienteHasBonus(cli)}">
+               {{cli.nome}}
+            </div>
+         </a>
 
       </md-whiteframe>
 
+   </div>
+
+   <modal-confirmacao
+      id="modalConfirmacao"
+      mensagem="'Tem certeza que deseja excluir o registro?'"
+      on-click-yes="del()">
+   </modal-confirmacao>
 </div>

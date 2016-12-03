@@ -34,13 +34,15 @@
 					console.log(res.data.message);
 					tokenService.removeToken();
 					$injector.get('$state').transitionTo('login');
+				}else if (res.status == -1) {
+					var tt = $injector.get('toastr');
+					tt.error("Ocorreu um Erro inesperado ou o sistema se encontra indisponível.", "FATAL");
 				}
 				return $q.reject(res);
 			}
 
 		}
 	}
-
 
 	var depends = [
 		'APP_CONFIG',
