@@ -2,3 +2,4 @@ node_modules/**
 semantic/**
 bower_components/**
 .htaccess
+.idea/**
